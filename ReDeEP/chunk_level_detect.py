@@ -102,8 +102,8 @@ def calculate_dist(sep_vocabulary_dist, sep_attention_dist):
     # kl1 = F.kl_div(log_softmax_mature_layer, M, reduction='none').mean(-1)  
     # kl2 = F.kl_div(log_softmax_anchor_layer, M, reduction='none').mean(-1)  
     # Fix bug: https://github.com/Jeryi-Sun/ReDEeP-ICLR/issues/2
-    kl1 = F.kl_div(M.log(), softmax_mature.unsqueeze(0),  reduction='none').mean(-1)
-    kl2 = F.kl_div(M.log(), softmax_anchor,  reduction='none').mean(-1)
+    kl1 = F.kl_div(M.log(), softmax_mature_layer.unsqueeze(0),  reduction='none').mean(-1)
+    kl2 = F.kl_div(M.log(), softmax_anchor_layer,  reduction='none').mean(-1)
     js_divs = 0.5 * (kl1 + kl2) 
         
     return js_divs.cpu().item()*10e5 # 这边有个 10e5, 下面没有
