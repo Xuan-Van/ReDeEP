@@ -90,16 +90,16 @@ def calculate_dist(sep_vocabulary_dist, sep_attention_dist):
 
     M = 0.5 * (softmax_mature_layer + softmax_anchor_layer) 
 
-    # # 4. Calculate log-softmax for the KL divergence
-    # log_softmax_mature_layer = F.log_softmax(sep_vocabulary_dist, dim=-1)  
-    # log_softmax_anchor_layer = F.log_softmax(sep_attention_dist, dim=-1) 
+    # 4. Calculate log-softmax for the KL divergence
+    log_softmax_mature_layer = F.log_softmax(sep_vocabulary_dist, dim=-1)  
+    log_softmax_anchor_layer = F.log_softmax(sep_attention_dist, dim=-1) 
 
-    # # 5. Calculate the KL divergences and then the JS divergences
-    # kl1 = F.kl_div(log_softmax_mature_layer, M, reduction='none').mean(-1)  
-    # kl2 = F.kl_div(log_softmax_anchor_layer, M, reduction='none').mean(-1)  
-    # Fix bug: https://github.com/Jeryi-Sun/ReDEeP-ICLR/issues/2
-    kl1 = F.kl_div(M.log(), softmax_mature_layer.unsqueeze(0),  reduction='none').mean(-1)
-    kl2 = F.kl_div(M.log(), softmax_anchor_layer,  reduction='none').mean(-1)
+    # 5. Calculate the KL divergences and then the JS divergences
+    kl1 = F.kl_div(log_softmax_mature_layer, M, reduction='none').mean(-1)  
+    kl2 = F.kl_div(log_softmax_anchor_layer, M, reduction='none').mean(-1)  
+    # # Fix bug: https://github.com/Jeryi-Sun/ReDEeP-ICLR/issues/2 but for stable calculation, we maintain the original implementation of JSD.
+    # kl1 = F.kl_div(M.log(), softmax_mature.unsqueeze(0),  reduction='none').mean(-1)
+    # kl2 = F.kl_div(M.log(), softmax_anchor,  reduction='none').mean(-1)
     js_divs = 0.5 * (kl1 + kl2) 
         
     return js_divs.cpu().item()*10e5
