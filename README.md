@@ -1,8 +1,8 @@
 参考项目：[Jeryi-Sun/ReDEeP-ICLR](https://github.com/Jeryi-Sun/ReDEeP-ICLR)：
-![](figure/1.png)
+![论文图示](figure/1.png)
 
 方法图示：
-![](figure/2.jpg)
+![方法图示](figure/2.jpg)
 
 ## 虚拟环境
 
@@ -91,4 +91,4 @@ huggingface-cli download --resume-download BAAI/bge-base-en-v1.5 --local-dir mod
 ## 更多研究
 
 在相同的评估指标下，将 Copy Heads 替换为每层的 Attention Heads，得到的结果：  
-![](figure/3.png)
+![研究结果](figure/3.png)
