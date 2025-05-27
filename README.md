@@ -1,8 +1,8 @@
 参考项目：[Jeryi-Sun/ReDEeP-ICLR](https://github.com/Jeryi-Sun/ReDEeP-ICLR)：
-[](figure/1.png)
+![](figure/1.png)
 
 方法图示：
-[](figure/2.jpg)
+![](figure/2.jpg)
 
 ## 虚拟环境
 
@@ -26,6 +26,7 @@ dataset/
     ragtruth # 数据集
     token_hyperparameter # AARF.py 的超参数
 
+figure/ # 保存图片
 log/ # 保存运行结果
 
 src/ # 保存项目脚本
@@ -90,4 +91,4 @@ huggingface-cli download --resume-download BAAI/bge-base-en-v1.5 --local-dir mod
 ## 更多研究
 
 在相同的评估指标下，将 Copy Heads 替换为每层的 Attention Heads，得到的结果：  
-![](figure.png)
+![](figure/3.png)
